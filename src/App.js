@@ -1,24 +1,43 @@
 import React from 'react';
-import logo from './logo.svg';
+import { Router } from '@reach/router';
 import './App.css';
+
+const ColorizeWord = (props) => {
+  if(isNaN(props.word)) 
+  return (
+    <div style={{ color: props.fontColor, backgroundColor: props.bgColor }}>
+      <h1>This is the word: {props.word}</h1>
+    </div>
+  )
+}
+
+const Four = (props) => {
+
+  if(isNaN(props.id)) {
+    return (<h1>This is the word: {props.id}</h1>)
+  } else {
+    return (<h1>This is the number {props.id}</h1>)
+  }
+}
+
+const Home = () => {
+
+  return (
+    <div>
+      <h1>Welcome Folks!</h1>
+    </div>
+  )
+}
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Router>
+        <Home path="/home" />
+        <Four path="/:id" />
+        <ColorizeWord path="/:word/:fontColor/" />
+        <ColorizeWord path="/:word/:fontColor/:bgColor" />
+      </Router>
     </div>
   );
 }
